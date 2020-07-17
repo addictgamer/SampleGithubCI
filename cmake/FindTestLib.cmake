@@ -1,0 +1,31 @@
+# This module defines:
+#  TESTLIB_INCLUDE_DIR,			library's header files
+#  TESTLIB_FOUND				true/false if testlib was found.
+
+SET(TESTLIB_SEARCH_PATHS
+	${TESTLIB_SEARCH_PATHS}
+	$ENV{TESTLIB_DIR}
+	~/Library/Frameworks
+	/Library/Frameworks
+	/usr/local
+	/usr
+	/opt/local
+	/opt
+)
+
+FIND_PATH(TESTLIB_INCLUDE_DIR NAMES testlib.hpp
+	HINTS
+	$ENV{TESTLIB_INCLUDE_DIR}
+	PATH_SUFFIXES include
+	PATHS ${TESTLIB_SEARCH_PATHS}
+)
+
+INCLUDE(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(TESTLIB DEFAULT_MSG TESTLIB_INCLUDE_DIR)
+
+# Copy the results to the output variables.
+IF (TESTLIB_FOUND)
+	SET(TESTLIB_INCLUDE_DIR ${TESTLIB_INCLUDE_DIR})
+ELSE (TESTLIB_FOUND)
+	SET(TESTLIB_INCLUDE_DIR)
+ENDIF (TESTLIB_FOUND)
