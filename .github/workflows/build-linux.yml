@@ -40,3 +40,11 @@ jobs:
         echo Initiating build-linux.sh
         cd ci
         ./build-linux.sh
+        
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        # Artifact name
+        name: SampleCIBinary # optional
+        # A file, directory or wildcard pattern that describes what to upload
+        path: build/release/test
