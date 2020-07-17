@@ -33,7 +33,7 @@ jobs:
         echo test, and deploy your project.
 
     # Actually does the build...
-    - name: Run a multi-line script
+    - name: Compile
       run: |
         echo Initiating build-linux.sh
         ./ci/build-linux.sh
