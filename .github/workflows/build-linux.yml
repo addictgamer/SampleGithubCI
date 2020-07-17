@@ -38,4 +38,5 @@ jobs:
         TESTLIB_PASSWORD: ${{ secrets.TESTLIB_PASSWORD }}
       run: |
         echo Initiating build-linux.sh
-        ./ci/build-linux.sh
+        cd ci
+        ./build-linux.sh
