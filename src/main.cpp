@@ -9,5 +9,7 @@ int main()
 
 	po.testFunc();
 
+	This will not work!
+
 	return 0;
 }
