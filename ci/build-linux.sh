@@ -7,11 +7,13 @@ if [ -z $TESTLIB_PASSWORD ]; then
 	exit 1
 fi
 
+# 1.a) Create dependencies directory.
 mkdir ../dependencies
 cd ..
 export TESTLIB_DIR=$(pwd)/dependencies/
 cd dependencies
 
+# 1.b) Fetch TESTLIB dependency.
 wget https://github.com/addictgamer/SampleGithubCI-Deps/files/4935989/testlib.zip -O testlib.zip
 RESULT=$?
 if [ $RESULT -ne 0 ]; then
@@ -19,6 +21,7 @@ if [ $RESULT -ne 0 ]; then
   exit $RESULT
 fi
 
+# 1.c) Provision TESTLIB dependency. (password protected, pass in through an environment variable!!)
 unzip -P $TESTLIB_PASSWORD testlib.zip
 RESULT=$?
 if [ $RESULT -ne 0 ]; then
