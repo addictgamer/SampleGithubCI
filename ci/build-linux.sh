@@ -13,8 +13,6 @@ export TESTLIB_DIR=$(pwd)/dependencies/
 cd dependencies
 
 wget https://github.com/addictgamer/SampleGithubCI-Deps/files/4935989/testlib.zip -O testlib.zip
-
-cp ../../SampleGithubCI-Deps/testlib.zip ./
 RESULT=$?
 if [ $RESULT -ne 0 ]; then
   echo "Fetching TESTLIB failed. Aborting."
