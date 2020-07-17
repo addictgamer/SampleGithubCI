@@ -34,6 +34,8 @@ jobs:
 
     # Actually does the build...
     - name: Compile
+      env:
+        TESTLIB_PASSWORD: ${{ secrets.TESTLIB_PASSWORD }}
       run: |
         echo Initiating build-linux.sh
         ./ci/build-linux.sh
