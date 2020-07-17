@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include "dependencies/testlib.hpp"
+#include "testlib.hpp"
 using namespace std;
 
 int main()

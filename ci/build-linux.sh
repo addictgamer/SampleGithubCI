@@ -2,7 +2,7 @@
 
 # 1) Fetch the dependencies
 
-if [$TESTLIB_PASSWORD -eq ""]; then
+if [ -z $TESTLIB_PASSWORD ]; then
 	echo "Error! No password provided for TESTLIB zip. Aborting."
 	exit 1
 fi
@@ -11,8 +11,20 @@ mkdir ../dependencies
 cd ..
 export TESTLIB_DIR=$(pwd)/dependencies/
 cd dependencies
+
 cp ../../SampleGithubCI-Deps/testlib.zip ./
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+  echo "Fetching TESTLIB failed. Aborting."
+  exit $RESULT
+fi
+
 unzip -P $TESTLIB_PASSWORD testlib.zip
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+  echo "Unzipping TESTLIB failed. Aborting."
+  exit $RESULT
+fi
 
 # 2) Build from source
 
@@ -20,13 +32,15 @@ mkdir -p ../build/release
 cd ../build/release
 
 cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ../..
+RESULT=$?
 if [ $RESULT -ne 0 ]; then
   echo "CMAKE generation failed. Aborting."
-  exit 1
+  exit $RESULT
 fi
 
 make -j
+RESULT=$?
 if [ $RESULT -ne 0 ]; then
   echo "Compilation failed. Aborting."
-  exit 1
+  exit $RESULT
 fi
